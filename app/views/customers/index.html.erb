@@ -1,0 +1,48 @@
+<%= render "customers/nav" %>
+<%= render "flash" %>
+
+
+<h2 class="text-center"> Customer Listing </h2>
+    <div class=" container text-right">
+            <%= link_to "send Multiple email", send_email_path, class:"btn btn-outline-danger  btn-sm" %>
+
+            <%= link_to "Add New Customer", new_customer_path, class:"btn btn-outline-info btn-sm" %>
+            <%= link_to "Export", customers_path(format: 'csv'), class:"btn btn-warning btn-sm" %>
+            <%= link_to "Download as Excel", customers_path(format: :xlsx), class:"btn btn-success btn-sm" %>
+    </div><br>
+  <%= render 'customers/search' %>
+<div class="container bg-white" >
+    <table class="table">
+        <thead>
+            <th>Customer Name </th>
+            <th> Email </th>
+            <th></th>
+        </thead>
+        <tbody>
+        <% @customers.reverse.each do | customer | %>
+            <tr>
+                <td> <%= customer.first_name %> <%= customer.last_name %></td>
+                <td> <%= customer.email %></td>
+                <td> <%= customer.age %></td>
+                <td><%= link_to "View", customer , class:"btn btn-outline-success btn-sm " %></td>
+                <td><%= link_to "delete", customer ,data:{
+                    turbo_method: :delete, 
+                    turbo_confirm: "Are you sure?"
+                } ,class:"btn btn-outline-success btn-sm " %></td>
+
+                
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <!-----------<%#= will_paginate @customers , class:"page-item"%> ---------->
+
+    # <!---<h4>Import that data</h4>------->
+    # <%#= form_with(model: Customer, url: import_customers_path, multipart: true) do |form| %>
+    #     <%#= form.file_field :file %>
+    #     <%#= form.submit 'Import CSV' %>
+    #   <#% end %>
+
+    <!-----------<%#= render template: "customers/manu" %>----->
+
+</div>

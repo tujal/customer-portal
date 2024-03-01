@@ -1,0 +1,7 @@
+<div class="container" style="width:40%">
+<%= search_form_for @query do | f| %>
+    <%= f.label :search %>
+    <%= f.search_field :first_name_or_last_name_or_email_or_age_cont, class: 'form-control' %>
+    <%= f.submit  class: 'btn btn-success btn-sm' %>
+<% end %>
+</div>

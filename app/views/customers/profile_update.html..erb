@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .center{
+        width: 100%;
+        height: 100vh;
+        justify-content: "center",
+        align-items: "center",
+        display: "flex"
+    }
+    </style>
+</head>
+<body class="center">  
+<div class="container bg-white">
+    <%= form_with model:@customer do | form| %>
+        <%= form.label :image , class:"form-label"%>
+        <%= form.file_field :image, class:"form-control" %><br>
+        <%= form.submit class:"btn btn-success btn-sm" %>
+        <% end %>
+    </div>
+         
+</body>
+</html>

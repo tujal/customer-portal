@@ -1,0 +1,74 @@
+<%= render "customers/nav" %>
+<%= render "flash" %>
+<h2 class="text-center">Customer Details</h2>
+
+<div class="container bg-white" style="width:50%">
+<div class="text-right">
+<!--------------#-<%#= link_to "Edit", edit_customer_path(@customer), class:"btn btn-warning btn-sm" %>--->
+<%= link_to 'Edit',[:edit, @customer], class:"btn btn-warning btn-sm" %>
+<%= link_to "Delete", customer_path(@customer), data: {
+    turbo_method: :delete, turbo_confirm: "Are you sure?"
+}, class:"btn btn-danger btn-sm" %>
+<%= link_to "Back", customers_path, class:"btn btn-primary btn-sm" %>
+</div>
+<div>
+<% if @customer.image.content_type == "image/jpeg" %>
+<%= image_tag(@customer.image, size:"200x200", class:"rounded-circle") if @customer.image.attached? %>
+<% else %>
+    <%= video_tag(@customer.image, controls: true, size:"200x200") if @customer.image.attached? %>
+<% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-----------<span><%#= link_to 'Download', rails_blob_path(@customer.image) , class:"btn btn-outline-warning btn-sm" if @customer.image.attached?%></span> ----------->
+        <% if @customer.image.attached? %>
+                <%= link_to  profile_update_customer_path(@customer) do %>
+                    <img src="https://cdn-icons-png.flaticon.com/128/1828/1828817.png" style="width:40px; height:40%">
+                <% end %>
+        <% end %>
+    <table class="table text-center">
+        <tbody>
+            <tr>
+                <td> First Name :- </td>
+                <td> <%= @customer.first_name %></td>
+            </tr>
+            <tr>
+                <td> Last Name :- </td>
+                <td> <%= @customer.last_name %></td>
+            </tr>
+            <tr>
+                <td> Email:- </td>
+                <td> <%= @customer.email %></td>
+            </tr>
+            <tr>
+                <td> Age:- </td>
+                <td> <%= @customer.age %></td>
+            </tr>
+            <tr>
+                <td> Contact No:- </td>
+                <td> <%= @customer.phone %></td>
+            </tr>
+        </tbody>
+    </table>
+    <%= link_to "Download PDF", download_pdf_customer_path(@customer) , class:"btn btn-outline-success btn-sm " %>
+</div>
